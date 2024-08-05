@@ -66,40 +66,18 @@ def taxableincome (f,g,h,j) :
 
 taxableincome = taxableincome (totalsalary,NSSF,NHDF,NHIF)
 
-def PAYEE (i) :
-    paye = 0
-    relief = 2400
-    if i <= 24000:
-        return paye - relief
-       
-    rem = i - 24000
-    paye += 0.10 * 24000 
-
-    if rem >0:
-        if rem > 8333:
-            rem -= 8333
-            paye += (0.25 * 8333)
-        else:
-            paye += (0.25 * rem)  
-            rem = 0  
-    if rem > 0 :
-        if rem > 467667:
-            rem -= 467667
-            paye += (0.3 * 467667)
-        else:
-            paye += (0.3 * rem)
-            rem = 0
-    if rem > 0:
-        if rem > 300000:
-            rem -= 300000
-            paye += (0.325 * 300000)
-        else:
-            rem = 0
-            paye += (0.325 * rem)                
-    if rem > 0 :
-            paye += (0.35 * rem)
-
-    return paye - relief
+def PAYEE (i,relief=2400) :
+    if i <= 24000 :
+        payee = 0
+    elif i >=24001 and i <=32333 :
+        payee = (0.1 * 24000) + (0.25 * (i - 24000)) - relief 
+    elif i > 32333 and i <= 500000 :
+        payee = (0.1 * 24000) + (0.25 * 8333) + (0.3 * (i - 32333)) - relief
+    elif i >500000 and i <= 800000 :
+        payee = (0.1 *24000) + (0.25 * 8333) + (0.3 * 467667) + (0.325 * (i-500000)) - relief
+    else : 
+        payee = (0.1 *24000) + (0.25 * 8333) + (0.3 * 467667) + (0.325 * 300000) +(0.35 * (i-800000)) - relief
+    return payee
 
 payee = PAYEE(taxableincome)
 
