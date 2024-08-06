@@ -12,9 +12,10 @@ totalsalary = grosssalary(basicsalary,benefits)
 
 def NSSF (d,rate=0.06) :
     if d < 18000 :
-        d * rate 
+        nssfcontribution = d * rate 
     else :
-        return 18000 * rate
+        nssfcontribution = 18000 * rate
+    return nssfcontribution    
     
 NSSF = NSSF(totalsalary)
 print(NSSF)    
