@@ -10,5 +10,7 @@ elif b>c and b>d and b>a :
     print(f"{b} is the largest")
 elif c>a and c>b and c>d :
     print(f"{c} is the largest")
+elif d>a and d>b and d>c :
+    print(f"{d} is the largest") 
 else :
-    print(f"{d} is the largest")            
+    print(f"{a},{b},{c},{d} are all equal")               
